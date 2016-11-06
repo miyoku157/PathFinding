@@ -1,0 +1,29 @@
+﻿  Path-Finding.cpp
+e:\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  e:\projet git\path-finding\path-finding\path-finding.cpp(49): note: see reference to function template instantiation 'std::pair<point,float>::pair<point&,int,void,0>(_Other1,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=point &,
+              _Other2=int
+          ]
+  e:\projet git\path-finding\path-finding\path-finding.cpp(49): note: see reference to function template instantiation 'std::pair<point,float>::pair<point&,int,void,0>(_Other1,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=point &,
+              _Other2=int
+          ]
+e:\microsoft visual studio 14.0\vc\include\utility(172): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  e:\projet git\path-finding\path-finding\path-finding.cpp(74): note: see reference to function template instantiation 'std::pair<point,float>::pair<point&,double,void,0>(_Other1,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=point &,
+              _Other2=double
+          ]
+  e:\projet git\path-finding\path-finding\path-finding.cpp(74): note: see reference to function template instantiation 'std::pair<point,float>::pair<point&,double,void,0>(_Other1,_Other2 &&) noexcept' being compiled
+          with
+          [
+              _Other1=point &,
+              _Other2=double
+          ]
+  Path-Finding.vcxproj -> E:\Projet Git\Path-Finding\Debug\Path-Finding.exe
+  Path-Finding.vcxproj -> E:\Projet Git\Path-Finding\Debug\Path-Finding.pdb (Full PDB)
