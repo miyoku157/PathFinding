@@ -6,19 +6,19 @@
 #include <limits>
 #include <vector>
 #include <algorithm>
-double Distance(struct point p1, struct point p2);
-int min(std::vector<std::pair<struct point, float>*> &vector, std::pair<struct point, float>* &out);
+double Distance( point p1,  point p2);
+int min(std::vector<std::pair< point, float>*> &vector, std::pair< point, float>* &out);
 bool ValidCoordinates(int x, int y, const int& width, const int& height);
-bool Containscoord(std::vector<std::pair<struct point, float>*> &vector, int &x, int &y);
-bool Containscoord(std::vector<struct point> &vector, int &x, int &y);
-int FindIndex(std::vector<struct point> &vector, unsigned int &x, unsigned int &y);
+bool Containscoord(std::vector<std::pair< point, float>*> &vector, int &x, int &y);
+bool Containscoord(std::vector< point> &vector, int &x, int &y);
+int FindIndex(std::vector< point> &vector, unsigned int &x, unsigned int &y);
 void reverse_array(int* array, int arraylength);
 int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int nTargetY,const unsigned char* pMap,
 	const int nMapWidth, const int nMapHeight,int* pOutBuffer, const int nOutBufferSize);
-struct point {
+ struct point {
 	unsigned int x;
 	unsigned int y;
-	struct point* previous;
+	 point* previous;
 }init;
 int main()
 {
@@ -36,22 +36,22 @@ int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int
 	int* pOutBuffer, const int nOutBufferSize) {
 	
 	//init algorithm
-	std::vector<std::pair<struct point,float>*> Open = std::vector<std::pair<struct point,float>*>();
-	std::vector<struct point> Close = std::vector<struct point>();
-	std::pair<struct point, float>* toKeep=nullptr;
+	std::vector<std::pair< point,float>*> Open = std::vector<std::pair< point,float>*>();
+	std::vector< point> Close = std::vector< point>();
+	std::pair< point, float>* toKeep=nullptr;
 	bool isFinished = false;
-	struct point target;
+	 point target;
 	target.x = nTargetX;
 	target.y = nTargetY;
 	init.x = nStartX;
 	init.y = nStartY;
 	init.previous = nullptr;
 	//Put the starting point in the list
-	Open.push_back(new std::pair<struct point,float>(init,0));
+	Open.push_back(new std::pair< point,float>(init,0));
 	//loop until we reach the target or until there is no case to test
 	while (Open.size() != 0 &&!isFinished) {
 		//find the closest point 
-		std::pair<struct point, float>* toRemove;
+		std::pair< point, float>* toRemove;
 		int removeIndex=min(Open,toRemove);
 		if (toRemove->first.x +toRemove->first.y*nMapWidth == target.x+target.y*nMapWidth) {
 			isFinished = true;
@@ -70,11 +70,11 @@ int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int
 					if (pMap[(coordx) + coordy*nMapWidth] != 0) {
 						if (!Containscoord(Open, coordx, coordy)
 							&& !Containscoord(Close, coordx, coordy)) {
-							struct point toTest;
+							 point toTest;
 							toTest.x = coordx;
 							toTest.y = coordy;
 							toTest.previous = &toRemove->first;
-							Open.push_back(new std::pair<struct point, float>(toTest, Distance(toTest, target)));
+							Open.push_back(new std::pair< point, float>(toTest, Distance(toTest, target)));
 
 						}
 					}
@@ -85,7 +85,7 @@ int FindPath(const int nStartX, const int nStartY, const int nTargetX, const int
 	}
 	int index = 0;
 	if (toKeep->first.x == target.x&&toKeep->first.y == target.y) {
-		struct point* temp = &toKeep->first;
+		 point* temp = &toKeep->first;
 		index;
 		index++;
 		while (temp->previous != NULL) {
@@ -113,7 +113,7 @@ void reverse_array(int* array, int arraylength)
 		array[(arraylength - 1) - i] = temporary;
 	}
 }
-int FindIndex(std::vector<struct point> &vector,unsigned int &x, unsigned int &y) {
+int FindIndex(std::vector< point> &vector,unsigned int &x, unsigned int &y) {
 
 for (size_t i = 0; i < vector.size(); i++) {
 		if (vector[i].x == x&&vector[i].y == y) {
@@ -122,7 +122,7 @@ for (size_t i = 0; i < vector.size(); i++) {
 	}
 	return -1;
 }
-bool Containscoord(std::vector<struct point> &vector, int &x, int &y) {
+bool Containscoord(std::vector< point> &vector, int &x, int &y) {
 	bool isContained = false;
 	for (size_t i = 0; i < vector.size(); i++) {
 		if (vector[i].x == x&&vector[i].y == y) {
@@ -131,7 +131,7 @@ bool Containscoord(std::vector<struct point> &vector, int &x, int &y) {
 	}
 	return isContained;
 }
-bool Containscoord(std::vector<std::pair<struct point, float>*> &vector, int &x, int &y) {
+bool Containscoord(std::vector<std::pair< point, float>*> &vector, int &x, int &y) {
 	bool isContained = false;
 	for (size_t i = 0; i < vector.size(); i++) {
 		if (vector[i]->first.x == x&&vector[i]->first.y == y) {
@@ -156,7 +156,7 @@ bool ValidCoordinates(int x, int y,const int& width, const int& buffersize)
 	}
 	return true;
 }
-int min(std::vector<std::pair<struct point,float>*> &vector, std::pair<struct point, float>* &out) {
+int min(std::vector<std::pair< point,float>*> &vector, std::pair< point, float>* &out) {
 	float retour= std::numeric_limits<float>::max();
 	int index = 0;
 	for (size_t i = 0; i < vector.size(); i++) {
@@ -169,7 +169,7 @@ int min(std::vector<std::pair<struct point,float>*> &vector, std::pair<struct po
 	return index;
 }
 
-double Distance(struct point p1, struct point p2) {
+double Distance( point p1,  point p2) {
 	int dx = p1.x - p2.x;
 	int dy = p1.y - p2.y;
 	return sqrt((dx*dx) + (dy*dy));
